@@ -9,6 +9,7 @@ class AppImages {
   static String solar = "assets/images/solar.png";
   static String dataTypeTwo = "assets/images/dataTypeTwo.png";
   static String power = "assets/images/power.png";
+  static String noData = "assets/images/noData.png";
 
 
 }

@@ -5,6 +5,7 @@ import 'package:scube_accessment/common/commonWidget/customAppbar.dart';
 import 'package:scube_accessment/common/commonWidget/customText.dart';
 import 'package:scube_accessment/common/components/customSize.dart';
 import 'package:scube_accessment/core/utils/appImages.dart';
+import 'package:scube_accessment/features/homeView/view/noDataView.dart';
 import 'package:scube_accessment/features/homeView/widget/customCircularProgressBar.dart';
 
 import '../controller/summeryTabController.dart';
@@ -185,6 +186,7 @@ class HomeView extends StatelessWidget {
                   return InstrumentComponentWidget(
                     imagePath: item['image']!,
                     title: item['title']!,
+                    onTap: ()=>Get.to(NoDataView()),
                   );
                 },
               ),
