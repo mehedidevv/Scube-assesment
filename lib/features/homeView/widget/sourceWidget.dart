@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:scube_accessment/common/components/customSize.dart';
 import 'package:scube_accessment/features/homeView/widget/singleSourceWidget.dart';
 import '../../../core/utils/appImages.dart';
+import '../view/dataView.dart';
 
 class SourceWidget extends StatelessWidget {
   SourceWidget({super.key});
@@ -63,6 +66,7 @@ class SourceWidget extends StatelessWidget {
           subtitleValue1: source['subtitleValue1'],
           subtitle2: source['subtitle2'],
           subtitleValue2: source['subtitleValue2'],
+          onTap: ()=>Get.to(DataView()),
         );
       },
     );
