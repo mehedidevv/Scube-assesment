@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scube_accessment/common/commonWidget/customAppbar.dart';
 import 'package:scube_accessment/common/commonWidget/customCheckBoxWidget.dart';
+import 'package:scube_accessment/common/components/customSize.dart';
+
+import '../dataView/view/dataViewWidget.dart';
+import '../revenueView/view/revenueWidget.dart';
 
 class DataView extends StatefulWidget {
   const DataView({super.key});
@@ -11,16 +15,11 @@ class DataView extends StatefulWidget {
 }
 
 class _DataViewState extends State<DataView> {
-  // Move isChecked to the state
-  bool isChecked = false;
+  /// only one value will be active
+  String selectedView = 'data';
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    final appBarHeight = kToolbarHeight;
-    final topPadding = MediaQuery.of(context).padding.top;
-    final remainingHeight = screenHeight - appBarHeight - topPadding - 50.h;
-
     return Scaffold(
       appBar: CustomAppBar(title: 'SCM'),
       body: Container(
@@ -34,70 +33,66 @@ class _DataViewState extends State<DataView> {
               right: 0,
               bottom: 0,
               child: Container(
-                width: double.infinity,
+                padding: EdgeInsets.all(16.w),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  border: Border.all(
-                    width: 1,
-                    color: const Color(0XFFA5A7B9),
-                  ),
+                  border: Border.all(color: const Color(0XFFA5A7B9)),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20.r),
                     topRight: Radius.circular(20.r),
                   ),
                 ),
                 child: SingleChildScrollView(
-                  padding: EdgeInsets.all(16.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 60.h),
+                      heightBox20,
+
+                      if (selectedView == 'data')
+                        const DataViewWidget()
+                      else
+                        const RevenueViewWidget(),
                     ],
                   ),
                 ),
               ),
             ),
 
+            /// Top selector
             Positioned(
               top: 30.h,
-              left: 20.w,
-              right: 20.w,
+              left: 25.w,
+              right: 25.w,
               child: Container(
                 height: 40.h,
+                padding: EdgeInsets.symmetric(horizontal: 14.w),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(14.r),
-                  border: Border.all(
-                    width: 1,
-                    color: const Color(0XFFA5A7B9),
-                  ),
+                  border: Border.all(color: const Color(0XFFA5A7B9)),
                 ),
-                alignment: Alignment.center,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 14.w),
-                  child: Row(
-                    children: [
-                      CustomCheckbox(
-                        label: 'Data View',
-                        isSelected: isChecked,
-                        onTap: () {
-                          setState(() {
-                            isChecked = !isChecked;
-                          });
-                        },
-                      ),
-
-                      CustomCheckbox(
-                        label: 'Revenue View',
-                        isSelected: isChecked,
-                        onTap: () {
-                          setState(() {
-                            isChecked = !isChecked;
-                          });
-                        },
-                      )
-                    ],
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomCheckbox(
+                      label: 'Data View',
+                      isSelected: selectedView == 'data',
+                      onTap: () {
+                        setState(() {
+                          selectedView = 'data';
+                        });
+                      },
+                    ),
+                    CustomCheckbox(
+                      label: 'Revenue View',
+                      isSelected: selectedView == 'revenue',
+                      onTap: () {
+                        setState(() {
+                          selectedView = 'revenue';
+                        });
+                      },
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -107,4 +102,5 @@ class _DataViewState extends State<DataView> {
     );
   }
 }
+
 

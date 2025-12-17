@@ -1,52 +1,74 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scube_accessment/common/commonWidget/customText.dart';
+import 'package:scube_accessment/common/components/customSize.dart';
 
 class CustomCheckbox extends StatelessWidget {
   final String label;
   final bool isSelected;
   final VoidCallback onTap;
 
+  // 🔹 Optional customization
+  final double? textFontSize;
+  final double? outerSize;
+  final double? innerSize;
+
   const CustomCheckbox({
     super.key,
     required this.label,
     required this.isSelected,
     required this.onTap,
+    this.textFontSize,
+    this.outerSize,
+    this.innerSize,
   });
 
   @override
   Widget build(BuildContext context) {
+    final double _outer = outerSize ?? 20.h;
+    final double _inner = innerSize ?? 12.h;
+    final double _fontSize = textFontSize ?? 16.sp;
+
     return GestureDetector(
       onTap: onTap,
       child: Row(
         children: [
-          // Circle Checkbox
+          // Outer Circle
           Container(
-            height: 20.h,
-            width: 20.h,
+            height: _outer,
+            width: _outer,
             decoration: BoxDecoration(
-              color: isSelected ? Colors.blue : Colors.grey[300],
-              shape: BoxShape.circle, // <-- circle shape
+              shape: BoxShape.circle,
               border: Border.all(
                 color: isSelected ? Colors.blue : Colors.grey,
                 width: 2,
               ),
             ),
-            child: isSelected
-                ? Icon(Icons.check, color: Colors.white, size: 18.sp)
-                : null,
+            alignment: Alignment.center,
+            child: Container(
+              height: _inner,
+              width: _inner,
+              decoration: BoxDecoration(
+                color: isSelected
+                    ? Colors.blue
+                    : const Color(0XFFA5A7B9),
+                shape: BoxShape.circle,
+              ),
+            ),
           ),
-          SizedBox(width: 12.w),
+          widthBox10,
           // Label
           CustomText(
             text: label,
-            fontSize: 16.sp,
-            color: isSelected ? Colors.blue : Colors.grey,
-            fontWeight: FontWeight.w500,
+            fontSize: _fontSize,
+            color: isSelected
+                ? const Color(0XFF0096FC)
+                : const Color(0XFF646984),
+            fontWeight:
+            isSelected ? FontWeight.w600 : FontWeight.w400,
           ),
         ],
       ),
     );
   }
 }
-

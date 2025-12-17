@@ -78,7 +78,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
               ? IconButton(
             icon: Icon(
               widget.postfixIcon,
-              color: AppColors.mainColor,
+              color: Color(0XFF646984),
               size: 20,
             ),
             onPressed: widget.onPostfixTap,
