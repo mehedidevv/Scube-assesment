@@ -6,6 +6,7 @@ import 'package:scube_accessment/common/components/customSize.dart';
 import 'package:scube_accessment/features/homeView/dataView/widget/semiCirclePainter.dart';
 
 class SemiCircularGauge extends StatelessWidget {
+  final double number;
   final double value;
   final double maxValue;
   final String unitText;
@@ -15,6 +16,7 @@ class SemiCircularGauge extends StatelessWidget {
 
   const SemiCircularGauge({
     super.key,
+    required this.number,
     required this.value,
     required this.maxValue,
     required this.unitText,
@@ -47,7 +49,7 @@ class SemiCircularGauge extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               CustomText(
-                text: value.toStringAsFixed(2),
+                text: number.toString(),
                 fontSize: 20.sp,
                 fontWeight: FontWeight.w500,
                 color: const Color(0XFF04063E),

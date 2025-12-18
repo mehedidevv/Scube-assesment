@@ -29,13 +29,13 @@ class SignInView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    width: 80,
-                    height: 80,
+                    width: 100,
+                    height: 100,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Colors.transparent,
                       shape: BoxShape.circle,
                     ),
-                    child: Image.asset(AppImages.logoScube),
+                    child: Image.asset(AppImages.scubeLogo),
                   ),
 
                   heightBox14,

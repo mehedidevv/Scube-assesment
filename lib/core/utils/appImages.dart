@@ -1,5 +1,6 @@
 class AppImages {
   static String logoScube = "assets/images/logoScube.png";
+  static String scubeLogo = "assets/images/scubeLogo.png";
   static String notification = "assets/images/notification.png";
   static String analysis = "assets/images/analysis.png";
   static String dGenarator = "assets/images/dGenarator.png";
@@ -10,6 +11,7 @@ class AppImages {
   static String dataTypeTwo = "assets/images/dataTypeTwo.png";
   static String power = "assets/images/power.png";
   static String noData = "assets/images/noData.png";
+  static String doubleArrow = "assets/images/doubleArrow.png";
 
 
 }

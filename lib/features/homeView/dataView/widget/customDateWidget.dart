@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:scube_accessment/common/commonWidget/customTextField.dart';
 import 'package:scube_accessment/common/components/customSize.dart';
 import 'package:scube_accessment/features/homeView/dataView/widget/singleEnergyWidget.dart';
 import '../../../../common/commonWidget/customText.dart';
+import '../../controller/dateController.dart';
 
 class CustomDateWidget extends StatelessWidget {
   CustomDateWidget({super.key});
@@ -40,6 +43,10 @@ class CustomDateWidget extends StatelessWidget {
     },
   ];
 
+
+  final DateController dateController = Get.put(DateController());
+
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -48,21 +55,27 @@ class CustomDateWidget extends StatelessWidget {
         Row(
           children: [
             Expanded(
-              child: CustomTextField(
+              child: Obx(() => CustomTextField(
+                controller: TextEditingController(text: dateController.fromDate.value),
                 hintText: 'From Date',
                 showObscure: false,
                 postfixIcon: Icons.calendar_today_outlined,
-              ),
+                onPostfixTap: () {
+                  dateController.pickDate(context, true);
+                },
+              )),
             ),
-
             widthBox10,
-
             Expanded(
-              child: CustomTextField(
+              child: Obx(() => CustomTextField(
+                controller: TextEditingController(text: dateController.toDate.value),
                 hintText: 'To Date',
                 showObscure: false,
                 postfixIcon: Icons.calendar_today_outlined,
-              ),
+                onPostfixTap: () {
+                  dateController.pickDate(context, false);
+                },
+              )),
             ),
           ],
         ),

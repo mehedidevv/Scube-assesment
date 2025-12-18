@@ -13,7 +13,6 @@ class DataViewWidget extends StatefulWidget {
 }
 
 class _DataViewWidgetState extends State<DataViewWidget> {
-  // By default Today Data selected
   bool isTodaySelected = true;
 
   @override
@@ -27,6 +26,7 @@ class _DataViewWidgetState extends State<DataViewWidget> {
           // Semi-circular gauge
           Center(
             child: SemiCircularGauge(
+              number: 70,
               value: 70,
               maxValue: 100,
               unitText: 'kWh/Sqft',
